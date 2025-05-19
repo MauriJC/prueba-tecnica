@@ -155,12 +155,12 @@ export default function AddContactForm() {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-full bg-black opacity-100">
+                      <PopoverContent className="w-full opacity-100">
                         <Command>
                           <CommandInput placeholder="Buscar provincia..." />
                           <CommandList>
                             <CommandEmpty>No se encontró la provincia.</CommandEmpty>
-                            <CommandGroup className="border bg-black opacity-100">
+                            <CommandGroup className="border opacity-100">
                               {provinces.map((province) => (
                                 <CommandItem
                                   key={province.id}
