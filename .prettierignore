@@ -1,3 +1,37 @@
-# Ignore artifacts:
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+
+# Next.js
+.next/
+out/
 build
-coverage
+dist
+
+# Production
+build
+dist
+
+# Local env files
+.env*.local
+.env
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated files
+generated/
+
+# Lock files
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Config files
+next.config.ts
+postcss.config.mjs
+eslint.config.mjs
+tsconfig.json
