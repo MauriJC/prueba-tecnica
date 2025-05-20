@@ -16,16 +16,20 @@ const formSchema = z.object({
 });
 
 export const addContact = async (data: z.infer<typeof formSchema>) => {
-  const cleanedData = formSchema.parse(data);
-  const { nombre, apellido, provincia } = cleanedData;
-  const telefono = parseInt(cleanedData.telefono);
+  try {
+    const cleanedData = formSchema.parse(data);
+    const { nombre, apellido, provincia } = cleanedData;
+    const telefono = parseInt(cleanedData.telefono);
 
-  await prisma.contacto.create({
-    data: {
-      nombre: nombre,
-      apellido: apellido,
-      telefono: telefono,
-      idProvincia: provincia,
-    },
-  });
+    await prisma.contacto.create({
+      data: {
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono,
+        idProvincia: provincia,
+      },
+    });
+  } catch (error) {
+    throw new Error(error instanceof z.ZodError ? 'Datos invalidos' : 'Fallo del servidor');
+  }
 };

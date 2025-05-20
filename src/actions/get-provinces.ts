@@ -3,6 +3,10 @@
 import prisma from '@/lib/prisma';
 
 export const getProvinces = async () => {
-  const provinces = await prisma.provincia.findMany();
-  return provinces;
+  try {
+    const provinces = await prisma.provincia.findMany();
+    return provinces;
+  } catch {
+    throw new Error('Error obteniendo provincias');
+  }
 };

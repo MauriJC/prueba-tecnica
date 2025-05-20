@@ -18,19 +18,23 @@ const formSchema = z.object({
 });
 
 export const editContact = async (data: z.infer<typeof formSchema>) => {
-  const cleanedData = formSchema.parse(data);
-  const { id, nombre, apellido, provincia } = cleanedData;
-  const telefono = parseInt(cleanedData.telefono);
+  try {
+    const cleanedData = formSchema.parse(data);
+    const { id, nombre, apellido, provincia } = cleanedData;
+    const telefono = parseInt(cleanedData.telefono);
 
-  await prisma.contacto.update({
-    data: {
-      nombre: nombre,
-      apellido: apellido,
-      telefono: telefono,
-      idProvincia: provincia,
-    },
-    where: {
-      id: id,
-    },
-  });
+    await prisma.contacto.update({
+      data: {
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono,
+        idProvincia: provincia,
+      },
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    throw new Error(error instanceof z.ZodError ? 'Datos no validos' : 'Error del servidor');
+  }
 };
