@@ -10,8 +10,9 @@ export const getContact = async (id: string) => {
     });
 
     return contact;
-  } catch {
+  } catch (error) {
     // DEberia agregar un console.error para mostrar en el backend?
+    console.error(error);
     throw new Error('Error obteniendo contacto');
   }
 };

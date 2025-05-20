@@ -35,6 +35,7 @@ export const editContact = async (data: z.infer<typeof formSchema>) => {
       },
     });
   } catch (error) {
+    console.error(error);
     throw new Error(error instanceof z.ZodError ? 'Datos no validos' : 'Error del servidor');
   }
 };
