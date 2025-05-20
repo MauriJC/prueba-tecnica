@@ -15,7 +15,7 @@ model Contacto {
   id          String @id @default(cuid())
   nombre      String
   apellido    String
-  telefono    Int
+  telefono    BigInt
   idProvincia String
 
   provincia Provincia @relation(fields: [idProvincia], references: [id], onDelete: Cascade)
