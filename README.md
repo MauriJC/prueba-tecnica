@@ -40,12 +40,34 @@ Luego de esto, podremos instalar el proyecto.
 
 ## Guía de utilización de la aplicación
 
-Home page:
+### Home page:
+
 Es la pantalla inicial de la app, se encuentra en la ruta `/` y en ella se te recibirá con un saludo, la lista de contactos (que al principio está vacía) y diferentes opciones como:
 
 - Agregar contacto
 - Editar contacto (en el ícono del lápiz)
 - Eliminar contacto (en el ícono del basurero)
+
+### Add contact page:
+
+En esta página serás capaz de agregar la información de un contacto que quieras guardar. Se reciben datos como:
+
+- Nombre
+- Apellido
+- Teléfono
+- Provincia
+
+Al presionar el botón `Agregar` se guardará la información en la base de datos, serás notificado por la aplicación y, luego redirigido a la Home page, donde podrás ver el nuevo contacto creado.
+
+### Edit contact page:
+
+En esta página serás capaz de editar la información del contacto que selecciones. Se pueden modificar todos los datos que hayas almacenado en la `Add-contact page`.
+Al presionar el botón `Confirmar` se guardará la información en la base de datos, serás notificado por la aplicación y, luego redirigido a la Home page, donde podrás ver el contacto editado.
+
+### Delete contact page:
+
+En esta página serás capaz de eliminar el contacto que hayas seleccionado. Cuenta únicamente con dos botones, `Aceptar` (elimina el contacto permanentemente) y `Cancelar` (te redirige al listado de contactos).
+Al presionar el botón `Aceptar` se guardará la información en la base de datos, serás notificado por la aplicación y, luego redirigido a la Home page, donde podrás ver el nuevo contacto creado.
 
 ## Decisiones técnicas tomadas:
 
@@ -63,6 +85,37 @@ Por qué SQLite?
 
 Porque viene integrado con Prisma, y no requiere configuración adicional como podrían ser otros DBMS.
 
-2. Se utilizaron server actions.
+### 2. Se utilizaron server actions.
 
-Agregar explicacion de por que se hizo la estructura de carpetas como esta
+Se decidio utilizar esta herramienta debido a que es una alternativa con tipado seguro (type safety), con una integracion intuitiva en el codigo y excelente a la hora de ser integrada con Server Components debido a su gran velocidad (gracias al SSR).
+
+### 3. Estructura de carpetas
+
+A continuacion se muestra la estructura de carpetas que fue elegida para este proyecto:
+
+```
+prueba-tecnica
+│   README.md
+│   /.../
+└───prisma
+|
+└───src
+    └────actions
+    └───app
+    |   │   /Rutas para otras páginas/
+    |   └──components
+    |       └────ui
+    |       └──/no se implementaron más carpetas para diferentes secciones/
+    │
+    └───lib
+        │  /archivos/
+```
+
+Ahora desestructuraremos un poco la finalidad de cada directorio:
+
+1. `/prisma` : guarda lo conrerniente al ORM Prisma, como las migraciones y, en este caso, el archivo de la base de datos SQLite.
+2. `/src/actions`: guarda todas las server actions utilizadas en la aplicacion. No se optó por subdividirla de acuerdo a diferentes categorías ya que el tamaño del proyecto no lo ameritaba.
+3. `src/app`: es el directorio principal de la app, a partir del cual el App router realiza el direccionamiento a cada una de las páginas.
+4. `src/app/components/ui`: aloja componentes reutilizables a lo largo de toda la app.
+5. `src/app/components`: destinada a guardar componentes pertenecientes a diferentes secciones de las páginas. No se subdividió en más carpetas porque no fue necesario.
+6. `src/lib`: guarda funciones utilitarias que pueden ser reutilizadas, como el singleton prisma client y la función cn(vital de shadcn).
