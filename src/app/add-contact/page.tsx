@@ -60,12 +60,12 @@ export default function AddContactPage() {
   });
 
   useEffect(() => {
-    const fetchProvincias = async () => {
+    const fetchProvinces = async () => {
       const data = await getProvinces();
       setProvinces(data);
     };
 
-    fetchProvincias();
+    fetchProvinces();
   }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
