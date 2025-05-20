@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Guía de instalación
 
-## Getting Started
+Se requiere de pnpm para instalar este proyecto, en caso de no tenerlo correr el siguiente comando:
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+npm install -g pnpm@latest-10
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Luego de esto, podremos instalar el proyecto.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pasos a seguir
 
-## Learn More
+1. Ejecutar en la raíz del proyecto:
 
-To learn more about Next.js, take a look at the following resources:
+```
+    pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Renombrar el archivo `.env.template` a `.env`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Migrar la base de datos para sincronizarla con el modelo establecido en el schema de Prisma.
 
-## Deploy on Vercel
+```
+    pnpm prisma migrate dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Poblar la base de datos utilizando el seeder con el siguiente comando:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+    pnpm dlx tsx prisma/seed.ts
+```
+
+4. Correr la aplicación con:
+
+```
+    pnpm dev
+```
+
+## Guía de utilización de la aplicación
+
+Home page:
+Es la pantalla inicial de la app, se encuentra en la ruta `/` y en ella se te recibirá con un saludo, la lista de contactos (que al principio está vacía) y diferentes opciones como:
+
+- Agregar contacto
+- Editar contacto (en el ícono del lápiz)
+- Eliminar contacto (en el ícono del basurero)
+
+## Decisiones técnicas tomadas:
+
+### 1. Este proyecto fue creado con Next.js, Prisma y SQLite.
+
+Por qué Next?
+
+Porque permite el desarrollo rápido de aplicaciones gracias a su integración de backend + frontend en un solo lugar, a su con un manejador de rutas preconfigurado (App router) y su facilidad de acoplamiento con TailwindCSS. Además, es una de las tecnologías con la que más me he relacionado el último tiempo, por lo que el desarrollo será mas fluido.
+
+Por qué Prisma?
+
+Es un ORM de facil configuración e implementación en el ecosistema de Next.js. También cuenta con una aplicación para manejar fácilmente los datos cargados en la DB.
+
+Por qué SQLite?
+
+Porque viene integrado con Prisma, y no requiere configuración adicional como podrían ser otros DBMS.
+
+2. Se utilizaron server actions.
+
+Agregar explicacion de por que se hizo la estructura de carpetas como esta
