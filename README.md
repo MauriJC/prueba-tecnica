@@ -79,7 +79,7 @@ Porque permite el desarrollo rápido de aplicaciones gracias a su integración d
 
 Por qué Prisma?
 
-Es un ORM de facil configuración e implementación en el ecosistema de Next.js. También cuenta con una aplicación para manejar fácilmente los datos cargados en la DB.
+Es un ORM de fácil configuración e implementación en el ecosistema de Next.js. También cuenta con una aplicación para manejar fácilmente los datos cargados en la DB.
 
 Por qué SQLite?
 
@@ -87,11 +87,11 @@ Porque viene integrado con Prisma, y no requiere configuración adicional como p
 
 ### 2. Se utilizaron server actions.
 
-Se decidio utilizar esta herramienta debido a que es una alternativa con tipado seguro (type safety), con una integracion intuitiva en el codigo y excelente a la hora de ser integrada con Server Components debido a su gran velocidad (gracias al SSR).
+Se decidió utilizar esta herramienta debido a que es una alternativa con tipado seguro (type safety), con una integración intuitiva en el código y excelente a la hora de ser integrada con Server Components debido a su gran velocidad (gracias al SSR).
 
 ### 3. Estructura de carpetas
 
-A continuacion se muestra la estructura de carpetas que fue elegida para este proyecto:
+A continuación se muestra la estructura de carpetas que fue elegida para este proyecto:
 
 ```
 prueba-tecnica
@@ -113,7 +113,7 @@ prueba-tecnica
 
 Ahora desestructuraremos un poco la finalidad de cada directorio:
 
-1. `/prisma` : guarda lo conrerniente al ORM Prisma, como las migraciones y, en este caso, el archivo de la base de datos SQLite.
+1. `/prisma` : guarda lo concerniente al ORM Prisma, como las migraciones y, en este caso, el archivo de la base de datos SQLite.
 2. `/src/actions`: guarda todas las server actions utilizadas en la aplicacion. No se optó por subdividirla de acuerdo a diferentes categorías ya que el tamaño del proyecto no lo ameritaba.
 3. `src/app`: es el directorio principal de la app, a partir del cual el App router realiza el direccionamiento a cada una de las páginas.
 4. `src/app/components/ui`: aloja componentes reutilizables a lo largo de toda la app.
