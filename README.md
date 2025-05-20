@@ -12,27 +12,33 @@ Luego de esto, podremos instalar el proyecto.
 
 ### Pasos a seguir
 
-1. Ejecutar en la raíz del proyecto:
+1. Clonar el repo con el siguiente script:
+
+```
+   git clone https://github.com/MauriJC/prueba-tecnica.git
+```
+
+2. Ejecutar en la raíz del proyecto:
 
 ```
     pnpm install
 ```
 
-2. Renombrar el archivo `.env.template` a `.env`
+3. Renombrar el archivo `.env.template` a `.env`
 
-3. Migrar la base de datos para sincronizarla con el modelo establecido en el schema de Prisma.
+4. Migrar la base de datos para sincronizarla con el modelo establecido en el schema de Prisma.
 
 ```
     pnpm prisma migrate dev
 ```
 
-3. Poblar la base de datos utilizando el seeder con el siguiente comando:
+5. Poblar la base de datos utilizando el seeder con el siguiente comando:
 
 ```
     pnpm dlx tsx prisma/seed.ts
 ```
 
-4. Correr la aplicación con:
+6. Correr la aplicación con:
 
 ```
     pnpm dev
@@ -71,7 +77,7 @@ Al presionar el botón `Aceptar` se guardará la información en la base de dato
 
 ## Decisiones técnicas tomadas:
 
-### 1. Este proyecto fue creado con Next.js, Prisma y SQLite.
+### 1. Este proyecto fue creado con Next.js, Prisma, SQLite y Shadcn.
 
 Por qué Next?
 
@@ -84,6 +90,10 @@ Es un ORM de fácil configuración e implementación en el ecosistema de Next.js
 Por qué SQLite?
 
 Porque viene integrado con Prisma, y no requiere configuración adicional como podrían ser otros DBMS.
+
+Por qué Shadcn?
+
+Porque ofrece componentes prefabricados totalmente modificables y adaptables a cada situación que nos encontremos. También son compatibles con los temas del navegador de forma nativa.
 
 ### 2. Se utilizaron server actions.
 
