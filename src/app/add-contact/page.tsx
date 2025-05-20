@@ -29,6 +29,7 @@ import { toast } from 'sonner';
 import { addContact } from '@/actions/add-contact';
 import { getProvinces } from '@/actions/get-provinces';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   nombre: z.string().min(2, {
@@ -43,9 +44,10 @@ const formSchema = z.object({
   provincia: z.string(),
 });
 
-export default function AddContactForm() {
+export default function AddContactPage() {
   const [open, setOpen] = useState(false);
   const [provinces, setProvinces] = useState<{ nombre: string; id: string }[]>([]);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,11 +71,12 @@ export default function AddContactForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     toast.promise(addContact(values), {
       loading: 'Cargando',
-      success: 'Contacto agregado exitosamente',
+      success: () => {
+        router.push('/');
+        return 'Contacto agregado exitosamente';
+      },
       error: 'Ocurrió un error',
     });
-
-    console.log(values);
   }
 
   return (
